@@ -44,6 +44,23 @@
       element.innerHTML = value;
       element.className = "listy";
 
+      let listyItems = document.getElementsByClassName("listy");
+
+      if (listyItems.length > 9) {
+        let removed = false;
+        for (let item of listyItems) {
+          if (item.innerHTML === value) {
+            item.remove();
+            console.log("Removed duplicate:", value);
+            removed = true;
+            break;
+          }
+        }
+        if (!removed) {
+          listyItems[0].remove();
+        }
+      }
+
       let container = document.getElementById("target");
       container.appendChild(element);
     }
