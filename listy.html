@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kaden Smith Builds a List</title>
+  <style>
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      background-color: red;
+    }
+
+    .flex-container > div {
+      background-color: #f1f1f1;
+      margin: 10px;
+      padding: 20px;
+      font-size: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .flex-container {
+        flex-direction: column;
+        background-color: green;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flex-container" id="target">
+    <div class="listy">row item 1</div>
+    <div class="listy">row item 2</div>
+    <div class="listy">row item 3</div>
+  </div>
+
+  <p>Press the button to create a new element with text from the input and add it to the container.</p>
+
+  <input type="text" id="userInput">
+  <button onclick="makeNewDiv()">Add One</button>
+
+  <script>
+    function makeNewDiv() {
+      let element = document.createElement("div");
+      let value = document.getElementById("userInput").value;
+      element.innerHTML = value;
+      element.className = "listy";
+
+      let container = document.getElementById("target");
+      container.appendChild(element);
+    }
+  </script>
+</body>
+</html>
