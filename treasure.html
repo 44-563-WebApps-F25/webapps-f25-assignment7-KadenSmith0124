@@ -5,76 +5,93 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 80px);
+      gap: 4px;
+    }
     img {
       width: 80px;
       height: 80px;
-    }
-
-    body > div > div { 
-      display: flex;
+      object-fit: cover;
+      cursor: pointer;
     }
   </style>
-
 </head>
 <body>
 
   <h1>Kaden Smith Treasure Hunt</h1>
 
   <p>Click on the locations to find silver and gold, watch out for the rattlesnake.</p>
-  <p id="locations">Number of locations checked is zero.</p>
-  <p id="score">Score is zero.</p>
-  <p>Click for help.</p>
-  <p id="help">Help report</p>
+  <p id="locations">Number of locations checked is 0.</p>
+  <p id="distance">Distance is unknown.</p>
 
-  <div>
-    <div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-    </div>
-    <div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-    </div>
-    <div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-    </div>
-    <div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-    </div>
-    <div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-      <div><img src="images/cactus.jpg"></div>
-    </div>
+  <div class="grid">
+    <img id="loc0"  src="images/cactus.jpg" onclick="makeGuess(0)">
+    <img id="loc1"  src="images/cactus.jpg" onclick="makeGuess(1)">
+    <img id="loc2"  src="images/cactus.jpg" onclick="makeGuess(2)">
+    <img id="loc3"  src="images/cactus.jpg" onclick="makeGuess(3)">
+    <img id="loc4"  src="images/cactus.jpg" onclick="makeGuess(4)">
+    <img id="loc5"  src="images/cactus.jpg" onclick="makeGuess(5)">
+    <img id="loc6"  src="images/cactus.jpg" onclick="makeGuess(6)">
+    <img id="loc7"  src="images/cactus.jpg" onclick="makeGuess(7)">
+    <img id="loc8"  src="images/cactus.jpg" onclick="makeGuess(8)">
+    <img id="loc9"  src="images/cactus.jpg" onclick="makeGuess(9)">
+    <img id="loc10" src="images/cactus.jpg" onclick="makeGuess(10)">
+    <img id="loc11" src="images/cactus.jpg" onclick="makeGuess(11)">
+    <img id="loc12" src="images/cactus.jpg" onclick="makeGuess(12)">
+    <img id="loc13" src="images/cactus.jpg" onclick="makeGuess(13)">
+    <img id="loc14" src="images/cactus.jpg" onclick="makeGuess(14)">
+    <img id="loc15" src="images/cactus.jpg" onclick="makeGuess(15)">
+    <img id="loc16" src="images/cactus.jpg" onclick="makeGuess(16)">
+    <img id="loc17" src="images/cactus.jpg" onclick="makeGuess(17)">
+    <img id="loc18" src="images/cactus.jpg" onclick="makeGuess(18)">
+    <img id="loc19" src="images/cactus.jpg" onclick="makeGuess(19)">
+    <img id="loc20" src="images/cactus.jpg" onclick="makeGuess(20)">
+    <img id="loc21" src="images/cactus.jpg" onclick="makeGuess(21)">
+    <img id="loc22" src="images/cactus.jpg" onclick="makeGuess(22)">
+    <img id="loc23" src="images/cactus.jpg" onclick="makeGuess(23)">
+    <img id="loc24" src="images/cactus.jpg" onclick="makeGuess(24)">
   </div>
 
+  <script>
+    let ids = [
+      "loc0","loc1","loc2","loc3","loc4",
+      "loc5","loc6","loc7","loc8","loc9",
+      "loc10","loc11","loc12","loc13","loc14",
+      "loc15","loc16","loc17","loc18","loc19",
+      "loc20","loc21","loc22","loc23","loc24"
+    ];
+
+    let clickCount = 0;
+    let treasureLocation = 18;
+
+    function makeGuess(position) {
+      let id = ids[position];
+      let img = document.getElementById(id);
+
+      if (position === treasureLocation) {
+        img.src = "images/gold.jpg";
+      } else {
+        img.src = "images/coin.jpg";
+      }
+
+      clickCount++;
+      document.getElementById("locations").innerHTML =
+        "Number of locations checked is " + clickCount + ".";
+
+      let d = distance(position, treasureLocation);
+      document.getElementById("distance").innerHTML = "Distance is " + d + ".";
+    }
+
+    function distance(pos1, pos2) {
+      let x1 = pos1 % 5;
+      let y1 = Math.floor(pos1 / 5);
+      let x2 = pos2 % 5;
+      let y2 = Math.floor(pos2 / 5);
+      return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
+  </script>
 </body>
 </html>
